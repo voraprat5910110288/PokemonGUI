@@ -8,7 +8,7 @@ package pokemongui;
 /**
  *
  * @author Vvoraprat
- */
+ *ยังกากอยู่/
 public class PokeGame extends javax.swing.JFrame {
 
     /**
