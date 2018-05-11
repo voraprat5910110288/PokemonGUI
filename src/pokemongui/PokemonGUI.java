@@ -16,6 +16,7 @@ public class PokemonGUI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Command c = new Command();
     }
     
 }
