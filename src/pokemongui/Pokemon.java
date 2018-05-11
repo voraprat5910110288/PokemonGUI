@@ -30,6 +30,8 @@ abstract class Pokemon{
 		this.health -= berry.getRestoreValue();
 		if(this.health > this.maxHealth)
 			this.health = this.maxHealth;
+                if(this.health <= 0)
+                        this.health = 0;
 	}
 
 	public void attack(Pokemon rival){
@@ -46,7 +48,7 @@ abstract class Pokemon{
 
 	public void reducedHealth(double value){
 		this.health -= value;
-		if(this.health < 0)
+		if(this.health <= 0)
 			this.health = 0;
 	}
         

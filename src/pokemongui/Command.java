@@ -32,7 +32,7 @@ public class Command extends JFrame{
     int  membershipOfHitokage, 
          membershipOfFushigidane,
          membershipOfZenigame;
-    
+    //***************************************************************************************
     public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
         String hp = "======== Pokemon List ======== \n"+"Pokemon "+
                 pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
@@ -41,41 +41,33 @@ public class Command extends JFrame{
                 pokemons.get(member).getWeight();
         return hp+weight;
     }
-    
-    public static String battlePokemon(ArrayList<Pokemon> pokemons,int member){
-       Zenigame zg = new Zenigame();
-       String zgTxt = ""+zg.getName()+"health:"+zg.getHealth()+"/"+zg.maxHealth;
-       pokemons.get(member).attack(zg);
-       
-       return "a";
-    }
-    
+    //***************************************************************************************
     public void eatBerry(int mumber){
             Berry berry = new Berry(0);
             pokemons.get(mumber).eat(berry);
             printProFile.setText(printPokemons(pokemons,mumber));
     }
-    
+    //***************************************************************************************
     public Command(){
         super("PokemonGame!!!");
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
+        
         String pokemonName[] = {
             "Hitokage",    // 004 
             "Fushigidane", //008
             "Zenigame"     //007
         };
-        
+        //*********************************   
         select = new JComboBox(pokemonName);
         select.setPreferredSize(new Dimension(150,20));
-        
+        //********************************* 
         p1 = new JPanel();
         p1.setLayout(new FlowLayout());
         showData = new JPanel();
         showData.setLayout(new FlowLayout());
-        
-        
-        printProFile  = new JTextArea("",20,20);
+        //********************************* 
+        printProFile  = new JTextArea("",20,30);
         dataIconStart = new ImageIcon(getClass().getResource("while.png"));
         dataIcon0     = new ImageIcon(getClass().getResource("004.png"));
         dataIcon1     = new ImageIcon(getClass().getResource("008.jpg"));
@@ -91,9 +83,9 @@ public class Command extends JFrame{
         pokemons.add(new Hitokage());
         pokemons.add(new Fushigidane());
         pokemons.add(new Zenigame());
-        
+        //********************************* 
                 
-        //event GO!!!
+        //event ^^!!!
         newButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,6 +113,7 @@ public class Command extends JFrame{
                 }
             }
         });
+        //end 
         
         //Event eatButton
         eatButton.addActionListener(new ActionListener() {
@@ -147,14 +140,14 @@ public class Command extends JFrame{
                 }
             }
         });
+        //End eat
         
-        //event exerciseButton
+        //Event exerciseButton
         exerciseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                  switch (select.getSelectedIndex()) {
                     case 0:
-                        
                         pokemonIcon.setIcon(dataIcon0);
                         pokemons.get(membershipOfFushigidane).move();
                         printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
@@ -162,7 +155,6 @@ public class Command extends JFrame{
                         break;
                     case 1:
                         pokemonIcon.setIcon(dataIcon1);
-                     
                         pokemons.get( membershipOfFushigidane).move();
                         printProFile.setText(printPokemons(pokemons,membershipOfFushigidane));
                         System.out.print("Fushigidane ออกกำลัง"+select.getSelectedIndex());
@@ -183,9 +175,11 @@ public class Command extends JFrame{
        battleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(p1, e);
+                
                 switch (select.getSelectedIndex()) {
                     case 0:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
+                        
                         pokemonIcon.setIcon(dataIcon0);
                         Pokemon red = pokemons.get(membershipOfHitokage);
                         Pokemon blue = pokemons.get(membershipOfZenigame);
@@ -196,8 +190,6 @@ public class Command extends JFrame{
                 }
             }
         });
-        
-        
         
          //set layout
         p1.add(txtSelect);

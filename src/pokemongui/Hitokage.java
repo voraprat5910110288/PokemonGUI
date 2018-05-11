@@ -16,6 +16,8 @@ public class Hitokage extends Pokemon implements Runnable {
 	public void run(){
 		this.reducedWeight(0.5);
 	}
+        
+        
 
 	public void walk(){
 		this.reducedWeight(1);
