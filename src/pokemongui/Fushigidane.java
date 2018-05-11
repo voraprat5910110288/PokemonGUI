@@ -5,8 +5,8 @@ public class Fushigidane extends Pokemon implements Runnable {
 		super("Fushigidane",
 		      80,45.00);
 
-		this.attackSkill = PokemonSkill.getPokemonSkill("Thunder Shock");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("Thunderbolt");
+		this.attackSkill = PokemonSkill.getPokemonSkill("Scratch");
+		this.untimatedSkill = PokemonSkill.getPokemonSkill("GrainAmmunition");
 	}
 
 	public void move(){

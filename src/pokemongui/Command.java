@@ -149,7 +149,7 @@ public class Command extends JFrame{
                  switch (select.getSelectedIndex()) {
                     case 0:
                         pokemonIcon.setIcon(dataIcon0);
-                        pokemons.get(membershipOfFushigidane).move();
+                        pokemons.get(membershipOfHitokage).move();
                         printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
                         System.out.print("Hitokage ออกกำลัง"+select.getSelectedIndex());
                         break;
@@ -179,13 +179,17 @@ public class Command extends JFrame{
                 switch (select.getSelectedIndex()) {
                     case 0:
                         JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
-                        
                         pokemonIcon.setIcon(dataIcon0);
-                        Pokemon red = pokemons.get(membershipOfHitokage);
-                        Pokemon blue = pokemons.get(membershipOfZenigame);
-                        red.attack(blue);
-                        blue.attack(red);
-                        printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
+                        break;
+                    case 1:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
+                        pokemonIcon.setIcon(dataIcon1);
+                        break;
+                    case 2:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
+                        pokemonIcon.setIcon(dataIcon2);
+                        break;
+                    default:
                         break;
                 }
             }

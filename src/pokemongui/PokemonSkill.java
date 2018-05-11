@@ -20,18 +20,25 @@ public class PokemonSkill{
 	public static PokemonSkill getPokemonSkill(String name){
 		PokemonSkill skill = null;
 		switch(name.toLowerCase()){
-			case "thunder shock":
-				skill = new PokemonSkill("Thunder Shock", 40);
+			case "Crash":
+				skill = new PokemonSkill("Crash", 10);
 				break;
-			case "thunderbolt":
-				skill = new PokemonSkill("Thunderbolt", 90);
+			case "Fired":
+				skill = new PokemonSkill("Fired", 15);
 				break;
-			case "tail whip":
-				skill = new PokemonSkill("Tail Whip", 10);
+			case "Scratch":
+				skill = new PokemonSkill("Scratch", 10);
 				break;
-			case "Water Pulse":
-				skill = new PokemonSkill("Water Pulse", 100);
+			case "GrainAmmunition":
+				skill = new PokemonSkill("GrainAmmunition", 20);
 				break;
+                        case "Tail Whip":
+				skill = new PokemonSkill("Tail Whip", 12);
+				break;
+                        case "Water Pulse":
+				skill = new PokemonSkill("Water Pulse", 20);
+				break;
+                                                
 		}
 		return skill;
 	}
