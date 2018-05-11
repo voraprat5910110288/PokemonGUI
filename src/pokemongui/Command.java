@@ -1,4 +1,3 @@
-
 package pokemongui;
 
 import java.awt.BorderLayout;
@@ -14,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -25,18 +25,29 @@ public class Command extends JFrame{
     JPanel p1,showData;
     JLabel txtSelect,pokemonIcon;
     JTextField jTextField; //
-    JButton newPokemon,eatButton;
-    JTextArea printProFile;
+    JButton newButton,eatButton,exerciseButton,battleButton;
+    JTextArea printProFile,battleArea;
     Icon dataIcon0,dataIcon1,dataIcon2,dataIconStart;
     JComboBox select;
     int  membershipOfHitokage, 
          membershipOfFushigidane,
          membershipOfZenigame;
     
-    public static String printPokemons(ArrayList<Pokemon> pokemons,int mumber){
-        return "===== Pokemon List =====\n"+"Pokemon "+
-                pokemons.get(mumber).getName()+" health: "+pokemons.get(mumber).getHealth()
-                +"/"+pokemons.get(mumber).maxHealth;
+    public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
+        String hp = "======== Pokemon List ======== \n"+"Pokemon "+
+                pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
+                +"/"+pokemons.get(member).maxHealth;
+        String weight = "\n======== Pokemon Weight ======== \n"+" Weight: "+
+                pokemons.get(member).getWeight();
+        return hp+weight;
+    }
+    
+    public static String battlePokemon(ArrayList<Pokemon> pokemons,int member){
+       Zenigame zg = new Zenigame();
+       String zgTxt = ""+zg.getName()+"health:"+zg.getHealth()+"/"+zg.maxHealth;
+       pokemons.get(member).attack(zg);
+       
+       return "a";
     }
     
     public void eatBerry(int mumber){
@@ -73,15 +84,17 @@ public class Command extends JFrame{
         pokemonIcon.setIcon(dataIconStart);
          
         txtSelect  = new JLabel("เลือก โปเกม่อนเริ่มต้น : ");
-        newPokemon = new JButton("GO!!!");
+        newButton = new JButton("^^");
         eatButton  = new JButton("EAT!!!");
+        battleButton = new JButton("Battle");
+        exerciseButton = new JButton("ExerciseGO");
         pokemons.add(new Hitokage());
         pokemons.add(new Fushigidane());
         pokemons.add(new Zenigame());
         
-        
+                
         //event GO!!!
-        newPokemon.addActionListener(new ActionListener() {
+        newButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switch (select.getSelectedIndex()) {
@@ -135,11 +148,64 @@ public class Command extends JFrame{
             }
         });
         
+        //event exerciseButton
+        exerciseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 switch (select.getSelectedIndex()) {
+                    case 0:
+                        
+                        pokemonIcon.setIcon(dataIcon0);
+                        pokemons.get(membershipOfFushigidane).move();
+                        printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
+                        System.out.print("Hitokage ออกกำลัง"+select.getSelectedIndex());
+                        break;
+                    case 1:
+                        pokemonIcon.setIcon(dataIcon1);
+                     
+                        pokemons.get( membershipOfFushigidane).move();
+                        printProFile.setText(printPokemons(pokemons,membershipOfFushigidane));
+                        System.out.print("Fushigidane ออกกำลัง"+select.getSelectedIndex());
+                        break;
+                    case 2:
+                        pokemonIcon.setIcon(dataIcon2);
+                        pokemons.get( membershipOfZenigame).move();
+                        printProFile.setText(printPokemons(pokemons,membershipOfZenigame));
+                        System.out.print("Zenigame ออกกำลัง "+select.getSelectedIndex());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        //event  battleButton 
+       battleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //JOptionPane.showMessageDialog(p1, e);
+                switch (select.getSelectedIndex()) {
+                    case 0:
+                        pokemonIcon.setIcon(dataIcon0);
+                        Pokemon red = pokemons.get(membershipOfHitokage);
+                        Pokemon blue = pokemons.get(membershipOfZenigame);
+                        red.attack(blue);
+                        blue.attack(red);
+                        printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
+                        break;
+                }
+            }
+        });
+        
+        
+        
          //set layout
         p1.add(txtSelect);
         p1.add(select);
-        p1.add(newPokemon);
+        p1.add(newButton);
         p1.add(eatButton);
+        p1.add(battleButton );
+        p1.add(exerciseButton);
         showData.add(pokemonIcon);
         showData.add(printProFile);
         c.add(showData, BorderLayout.PAGE_START);

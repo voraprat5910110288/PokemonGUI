@@ -2,16 +2,21 @@ package pokemongui;
 
 abstract class Pokemon{
 	public final double maxHealth;
-	protected double health;
+	protected double health,weight;
 	protected String name;
 	protected PokemonSkill attackSkill;
 	protected PokemonSkill untimatedSkill;
 
-	public Pokemon(String name, double maxHealth){
-		this.name = name;
-		this.health = maxHealth;
+	public Pokemon(String name, double maxHealth,double weight){
+		this.name      = name;
+		this.health    = maxHealth;
 		this.maxHealth = maxHealth;
+                this.weight    = weight;
 	}
+        
+        public double getWeight(){
+            return this.weight;
+        }
 
 	public double getHealth(){
 		return this.health;
@@ -45,6 +50,11 @@ abstract class Pokemon{
 			this.health = 0;
 	}
         
+        public void reducedWeight(double value){
+		this.weight -= value;
+		if(this.weight < 40)
+			this.weight = 40;
+	}
 
 	abstract public void move();
 
