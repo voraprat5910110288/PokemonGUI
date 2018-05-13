@@ -69,10 +69,11 @@ abstract class Pokemon{
 	}
 
 	public void injure(PokemonSkill skill){
-                if(count ==1)
+                /*if(count ==1)
 		      this.reducedHealth(20);
                 else 
-                      this.reducedHealth(10);
+                      this.reducedHealth(10);*/
+                this.reducedHealth(skill.getDamage());
 	}
 
 	public void reducedHealth(double value){

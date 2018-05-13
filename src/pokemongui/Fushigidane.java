@@ -8,7 +8,7 @@ public class Fushigidane extends Pokemon implements Runnable {
 		      maxGroupHealth,40,maxMood);
 
 		this.attackSkill    = PokemonSkill.getPokemonSkill("Scratch");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("GrainAmmunition");
+		this.untimatedSkill = PokemonSkill.getPokemonSkill("Grainammunition");
 	}
 
 	public void move(){

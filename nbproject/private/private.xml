@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Command.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Secrets.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Fushigidane.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Hitokage.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Berry.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Zenigame.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Battle.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/Pokemon.java</file>
+            <file>file:/D:/JavaProj/PokemonGUI/src/pokemongui/PokemonSkill.java</file>
+        </group>
     </open-files>
 </project-private>
