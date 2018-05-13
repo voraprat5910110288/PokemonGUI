@@ -24,7 +24,7 @@ public class PokemonSkill{
 				skill = new PokemonSkill("Crash", 10);
 				break;
 			case "Fired":
-				skill = new PokemonSkill("Fired", 15);
+				skill = new PokemonSkill("Fired", 20);
 				break;
 			case "Scratch":
 				skill = new PokemonSkill("Scratch", 10);
@@ -33,7 +33,7 @@ public class PokemonSkill{
 				skill = new PokemonSkill("GrainAmmunition", 20);
 				break;
                         case "TailWhip":
-				skill = new PokemonSkill("TailWhip", 12);
+				skill = new PokemonSkill("TailWhip", 10);
 				break;
                         case "WaterPulse":
 				skill = new PokemonSkill("WaterPulse", 20);

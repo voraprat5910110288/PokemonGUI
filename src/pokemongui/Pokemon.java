@@ -6,6 +6,7 @@ abstract class Pokemon{
 	protected String name;
 	protected PokemonSkill attackSkill;
 	protected PokemonSkill untimatedSkill;
+        int count =0;
 
 	public Pokemon(String name, double maxHealth,double weight,double maxMood){
 		this.name      = name;
@@ -18,6 +19,7 @@ abstract class Pokemon{
         public double getMood(){
             return this.mood;
         }
+        
         public String getStatus(){
             if (this.mood > 80)
                  return "happy";
@@ -62,11 +64,15 @@ abstract class Pokemon{
 
         }
 	public void untimate(Pokemon rival){
+                count = 1;
 		rival.injure(this.untimatedSkill);
 	}
 
 	public void injure(PokemonSkill skill){
-		this.reducedHealth(10);
+                if(count ==1)
+		      this.reducedHealth(20);
+                else 
+                      this.reducedHealth(10);
 	}
 
 	public void reducedHealth(double value){

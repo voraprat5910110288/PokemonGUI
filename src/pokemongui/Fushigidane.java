@@ -2,12 +2,12 @@ package pokemongui;
 
 public class Fushigidane extends Pokemon implements Runnable {
        private static final int maxGroupHealth = 200;
-       private static final double maxMood = 100;
+       private static  double maxMood     = 100;
 	public  Fushigidane(){
 		super("Fushigidane",
 		      maxGroupHealth,40,maxMood);
 
-		this.attackSkill = PokemonSkill.getPokemonSkill("Scratch");
+		this.attackSkill    = PokemonSkill.getPokemonSkill("Scratch");
 		this.untimatedSkill = PokemonSkill.getPokemonSkill("GrainAmmunition");
 	}
 

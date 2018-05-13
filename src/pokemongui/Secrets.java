@@ -3,7 +3,7 @@ package pokemongui;
 public class Secrets extends Pokemon implements Runnable {
        private static final int maxGroupHealth = 500;
 
-    public Secrets(String name, double maxHealth, double weight,double mood) {
+       public Secrets(String name, double maxHealth, double weight,double mood) {
         super(name, maxHealth, weight,mood);
     }
 	public  Secrets(){

@@ -2,7 +2,7 @@ package pokemongui;
 
 public class Zenigame extends Pokemon implements Swimmable{
     private static final int maxGroupHealth = 200;
-    private static final double maxMood = 100;    
+    private static  double maxMood = 100;    
 	public Zenigame(){
 		super("Zenigame",
                        maxGroupHealth,40,maxMood);
