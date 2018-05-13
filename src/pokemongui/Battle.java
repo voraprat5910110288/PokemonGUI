@@ -2,6 +2,7 @@ package pokemongui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,8 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import static pokemongui.Command.printPokemons;
+
 
 public class Battle extends JFrame{
     JComboBox selectSkill;
@@ -24,23 +24,25 @@ public class Battle extends JFrame{
     JButton attackButton,untimateButton,berryButton;
     Icon red,blue;
     JTextArea redText,blueText;
+    JComboBox select;
     int memberR,count;
-    
+   
+     
     public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
-        String hp = "======== Pokemon List ======== \n"+"Pokemon "+
-                pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
+        String hp = "========== Pokemon List ========== \n"+"Name: "+
+                pokemons.get(member).getName()+"\nHealth: "+pokemons.get(member).getHealth()
                 +"/"+pokemons.get(member).maxHealth;
-        String weight = "\n======== Pokemon Weight ======== \n"+" Weight: "+
-                pokemons.get(member).getWeight();
+        String weight = " Weight: "+ pokemons.get(member).getWeight();
         return hp+weight;
     }
     
     
     public Battle(ArrayList<Pokemon> pokemons,int member){
         super("Battle_Royale");
-        this.memberR = member;
-        pokemons.add(new Zenigame());
         
+        this.memberR = member;
+        
+        pokemons.add(new Secrets());
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
         count = 0;
@@ -51,41 +53,81 @@ public class Battle extends JFrame{
         p1 = new JPanel(); p1.setLayout(new FlowLayout());
         p2 = new JPanel(); p2.setLayout(new FlowLayout());
         p3 = new JPanel(); p3.setLayout(new FlowLayout());
+        
+        String berryName[] = {
+            "Berry",     
+            "GoldBerry", 
+            "MysteryBerry"     
+        };
+        select = new JComboBox(berryName);
+        select.setPreferredSize(new Dimension(120,20));
+        
+        
         switch (member) {
             case 0:
                 red = new ImageIcon(getClass().getResource("004.png"));
                 break;
             case 1:
-                red = new ImageIcon(getClass().getResource("008.jpg"));
+                red = new ImageIcon(getClass().getResource("005.png"));
                 break;
             case 2:
-                red = new ImageIcon(getClass().getResource("007.png"));
+                red = new ImageIcon(getClass().getResource("006.png"));
                 break;
             default:
                 break;
         }
-        blue = new ImageIcon(getClass().getResource("007.png"));
+        
+        blue = new ImageIcon(getClass().getResource("008.png"));
         labelR = new JLabel();
         labelR.setIcon(red);
         labelB = new JLabel();
         labelB.setIcon(blue);
+        
         attackButton = new JButton("Attack");
         untimateButton = new JButton("Untimate");
+        berryButton = new JButton("Berry");
+        
         redText = new JTextArea(printPokemons(pokemons,memberR),5,5);
         blueText = new JTextArea(printPokemons(pokemons,3),5,5);
         
+       
+        berryButton.addActionListener(new ActionListener() {
+            private int memberR;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                 switch (select.getSelectedIndex()) {
+                    case 0:
+                         Berry berry = new Berry(0);
+                         pokemons.get(this.memberR).eat(berry);
+                         redText.setText(printPokemons(pokemons,this.memberR));
+                        break;
+                    case 1:
+                        Berry berry1 = new Berry(1);
+                         pokemons.get(this.memberR).eat(berry1);
+                         redText.setText(printPokemons(pokemons,this.memberR));
+                        break;
+                    case 2:
+                         Berry berry2 = new Berry(2);
+                         pokemons.get(this.memberR).eat(berry2);
+                         redText.setText(printPokemons(pokemons,this.memberR));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+        });
         //Event attack
         attackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 redPlayer.attack(bluePlayer);
-                if(count %2  ==0)
+                if(count %2 ==0)
                     bluePlayer.attack(redPlayer);
                 blueText.setText(printPokemons(pokemons,3));
                 redText.setText(printPokemons(pokemons,member));
                 count ++;
-                
-                    
             }
         });
         untimateButton.addActionListener(new ActionListener() {
@@ -96,6 +138,7 @@ public class Battle extends JFrame{
                     bluePlayer.untimate(redPlayer);
                 blueText.setText(printPokemons(pokemons,3));
                 redText.setText(printPokemons(pokemons,member));
+                count ++;
             }
         });
        
@@ -104,6 +147,8 @@ public class Battle extends JFrame{
         
         p2.add(attackButton);
         p2.add(untimateButton);
+        p2.add(select);
+        p2.add(berryButton);
         
         p3.add(redText);
         p3.add(blueText);
@@ -112,14 +157,14 @@ public class Battle extends JFrame{
         c.add(p2, BorderLayout.CENTER);
         c.add(p3, BorderLayout.PAGE_END);
         //set others
-        setLocationRelativeTo(null);
+        
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         c.setSize(700,800);
         pack();
         setVisible(true);
-
-        
-        
+        setLocationRelativeTo(null);
     }
     
+            
+      
 }

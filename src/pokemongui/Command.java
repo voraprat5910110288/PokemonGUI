@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
 
 
 public class Command extends JFrame{
@@ -24,88 +24,136 @@ public class Command extends JFrame{
     ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     JPanel p1,showData;
     JLabel txtSelect,pokemonIcon;
-    JTextField jTextField; //
     JButton newButton,eatButton,exerciseButton,battleButton;
-    JTextArea printProFile,battleArea;
+    JTextArea printProFile;
     Icon dataIcon0,dataIcon1,dataIcon2,dataIconStart;
     JComboBox select;
-    int  membershipOfHitokage, 
-         membershipOfFushigidane,
-         membershipOfZenigame;
-    //***************************************************************************************
+    
+    
     public static String printPokemons(ArrayList<Pokemon> pokemons,int member){
-        String hp = "======== Pokemon List ======== \n"+"Pokemon "+
-                pokemons.get(member).getName()+" health: "+pokemons.get(member).getHealth()
+        String hp = "========== Pokemon List ========== \n"+"Name: "+
+                pokemons.get(member).getName()+"\nHealth: "+pokemons.get(member).getHealth()
                 +"/"+pokemons.get(member).maxHealth;
-        String weight = "\n======== Pokemon Weight ======== \n"+" Weight: "+
-                pokemons.get(member).getWeight();
+        String weight = " Weight: "+ pokemons.get(member).getWeight()+"\nMood: "+pokemons.get(member).getMood();
         return hp+weight;
     }
-    //***************************************************************************************
+    
+    
+    
     public void eatBerry(int mumber){
             Berry berry = new Berry(0);
             pokemons.get(mumber).eat(berry);
             printProFile.setText(printPokemons(pokemons,mumber));
     }
-    //***************************************************************************************
+    
     public Command(){
         super("PokemonGame!!!");
         Container c = getContentPane();
         c.setLayout(new BorderLayout());
-        
         String pokemonName[] = {
             "Hitokage",    // 004 
-            "Fushigidane", //008
-            "Zenigame"     //007
+            "Fushigidane", // 005
+            "Zenigame"     // 006
         };
-        //*********************************   
+        
         select = new JComboBox(pokemonName);
-        select.setPreferredSize(new Dimension(150,20));
-        //********************************* 
+        select.setPreferredSize(new Dimension(100,20));
+        
         p1 = new JPanel();
         p1.setLayout(new FlowLayout());
         showData = new JPanel();
         showData.setLayout(new FlowLayout());
-        //********************************* 
-        printProFile  = new JTextArea("",20,30);
-        dataIconStart = new ImageIcon(getClass().getResource("while.png"));
+        
+        
+        printProFile  = new JTextArea("Pokemon.....",6,20);
+        dataIconStart = new ImageIcon(getClass().getResource("000.png"));
         dataIcon0     = new ImageIcon(getClass().getResource("004.png"));
-        dataIcon1     = new ImageIcon(getClass().getResource("008.jpg"));
-        dataIcon2     = new ImageIcon(getClass().getResource("007.png"));
+        dataIcon1     = new ImageIcon(getClass().getResource("005.png"));
+        dataIcon2     = new ImageIcon(getClass().getResource("006.png"));
         pokemonIcon   = new JLabel("");
         pokemonIcon.setIcon(dataIconStart);
          
-        txtSelect  = new JLabel("เลือก โปเกม่อนเริ่มต้น : ");
-        newButton = new JButton("^^");
+        txtSelect  = new JLabel("Select PokemonStarter: ");
+        newButton = new JButton(" GO ");
         eatButton  = new JButton("EAT!!!");
+        exerciseButton = new JButton("Exercise");
         battleButton = new JButton("Battle");
-        exerciseButton = new JButton("ExerciseGO");
+        
         pokemons.add(new Hitokage());
         pokemons.add(new Fushigidane());
         pokemons.add(new Zenigame());
-        //********************************* 
-                
-        //event ^^!!!
+        
+        exerciseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 switch (select.getSelectedIndex()) {
+                    case 0:
+                        pokemonIcon.setIcon(dataIcon0);
+                        pokemons.get(select.getSelectedIndex()).move();
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
+                        System.out.print("ออกกำลัง"+select.getSelectedIndex());
+                        break;
+                    case 1:
+                        pokemonIcon.setIcon(dataIcon1);
+                        pokemons.get(select.getSelectedIndex()).move();
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
+                        System.out.print("ออกกำลัง"+select.getSelectedIndex());
+                        break;
+                    case 2:
+                        pokemonIcon.setIcon(dataIcon2);
+                        pokemons.get(select.getSelectedIndex()).move();
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
+                        System.out.print("ออกกำลัง "+select.getSelectedIndex());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        
+        
+        battleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (select.getSelectedIndex()) {
+                    case 0:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"Start Battle");
+                        pokemonIcon.setIcon(dataIcon0);
+                        break;
+                    case 1:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"Start Battle");
+                        pokemonIcon.setIcon(dataIcon1);
+                        break;
+                    case 2:
+                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"Start Battle");
+                        pokemonIcon.setIcon(dataIcon2);
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        });
+
+        
+        //event GO!!!
         newButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switch (select.getSelectedIndex()) {
                     case 0:
                         pokemonIcon.setIcon(dataIcon0);
-                        membershipOfHitokage = 0;
-                        printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
                         System.out.print("Hitokage"+select.getSelectedIndex());
                         break;
                     case 1:
                         pokemonIcon.setIcon(dataIcon1);
-                        membershipOfFushigidane = 1;
-                        printProFile.setText(printPokemons(pokemons,membershipOfFushigidane));
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
                         System.out.print("Fushigidane"+select.getSelectedIndex());
                         break;
                     case 2:
                         pokemonIcon.setIcon(dataIcon2);
-                        membershipOfZenigame = 2;
-                        printProFile.setText(printPokemons(pokemons,membershipOfZenigame));
+                        printProFile.setText(printPokemons(pokemons,select.getSelectedIndex()));
                         System.out.print("Zenigame"+select.getSelectedIndex());
                         break;
                     default:
@@ -113,7 +161,6 @@ public class Command extends JFrame{
                 }
             }
         });
-        //end 
         
         //Event eatButton
         eatButton.addActionListener(new ActionListener() {
@@ -121,73 +168,22 @@ public class Command extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switch (select.getSelectedIndex()) {
                     case 0:
-                        eatBerry(membershipOfHitokage);
+                        eatBerry(select.getSelectedIndex());
                         pokemonIcon.setIcon(dataIcon0);
+                        Pokemon pokemon1 = pokemons.get(0);
+		        Pokemon pokemon2 = pokemons.get(1);
+		        pokemon1.attack(pokemon2);
                         System.out.print("Hitokage eat"+ select.getSelectedIndex());
                         break;
                     case 1:
                         pokemonIcon.setIcon(dataIcon1);
-                        eatBerry(membershipOfFushigidane);
+                        eatBerry(select.getSelectedIndex());
                         System.out.print("Fushigidane eat"+ select.getSelectedIndex());
                         break;
                     case 2:
                         pokemonIcon.setIcon(dataIcon2);
-                        eatBerry(membershipOfZenigame);
+                        eatBerry(select.getSelectedIndex());
                         System.out.print("Zenigame eat"+ select.getSelectedIndex());
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        //End eat
-        
-        //Event exerciseButton
-        exerciseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                 switch (select.getSelectedIndex()) {
-                    case 0:
-                        pokemonIcon.setIcon(dataIcon0);
-                        pokemons.get(membershipOfHitokage).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfHitokage));
-                        System.out.print("Hitokage ออกกำลัง"+select.getSelectedIndex());
-                        break;
-                    case 1:
-                        pokemonIcon.setIcon(dataIcon1);
-                        pokemons.get( membershipOfFushigidane).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfFushigidane));
-                        System.out.print("Fushigidane ออกกำลัง"+select.getSelectedIndex());
-                        break;
-                    case 2:
-                        pokemonIcon.setIcon(dataIcon2);
-                        pokemons.get( membershipOfZenigame).move();
-                        printProFile.setText(printPokemons(pokemons,membershipOfZenigame));
-                        System.out.print("Zenigame ออกกำลัง "+select.getSelectedIndex());
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        //event  battleButton 
-       battleButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                switch (select.getSelectedIndex()) {
-                    case 0:
-                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
-                        pokemonIcon.setIcon(dataIcon0);
-                        break;
-                    case 1:
-                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
-                        pokemonIcon.setIcon(dataIcon1);
-                        break;
-                    case 2:
-                        JOptionPane.showMessageDialog(new Battle(pokemons,select.getSelectedIndex()),"เริ่มตอนสู้ได้");
-                        pokemonIcon.setIcon(dataIcon2);
                         break;
                     default:
                         break;
@@ -200,20 +196,17 @@ public class Command extends JFrame{
         p1.add(select);
         p1.add(newButton);
         p1.add(eatButton);
-        p1.add(battleButton );
         p1.add(exerciseButton);
+        p1.add(battleButton);
+        
         showData.add(pokemonIcon);
         showData.add(printProFile);
         c.add(showData, BorderLayout.PAGE_START);
         c.add(p1, BorderLayout.CENTER);
 
-        //set others
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        c.setSize(700,800);
-        pack();
-        setVisible(true);
+        
+        
         //**********************
     }
-    
+   
 }

@@ -5,9 +5,9 @@ public class Zenigame extends Pokemon implements Swimmable{
         
 	public Zenigame(){
 		super("Zenigame",
-                        100,75.14);
-		this.attackSkill = PokemonSkill.getPokemonSkill("Tail Whip");
-		this.untimatedSkill = PokemonSkill.getPokemonSkill("Water Pulse");
+                       maxGroupHealth,40,30);
+		this.attackSkill = PokemonSkill.getPokemonSkill("TailWhip");
+		this.untimatedSkill = PokemonSkill.getPokemonSkill("WaterPulse");
 	}
 
        @Override
@@ -17,6 +17,7 @@ public class Zenigame extends Pokemon implements Swimmable{
 
         @Override
 	public void swim(){
-		this.reducedWeight(2.5);
+		
+                this.reducedWeight(10);
 	}
 }

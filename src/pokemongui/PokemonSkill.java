@@ -32,15 +32,14 @@ public class PokemonSkill{
 			case "GrainAmmunition":
 				skill = new PokemonSkill("GrainAmmunition", 20);
 				break;
-                        case "Tail Whip":
-				skill = new PokemonSkill("Tail Whip", 12);
+                        case "TailWhip":
+				skill = new PokemonSkill("TailWhip", 12);
 				break;
-                        case "Water Pulse":
-				skill = new PokemonSkill("Water Pulse", 20);
+                        case "WaterPulse":
+				skill = new PokemonSkill("WaterPulse", 20);
 				break;
-                                                
-		}
-		return skill;
+                                      
+		}		return skill;
 	}
 }
 
