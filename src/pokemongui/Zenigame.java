@@ -2,10 +2,10 @@ package pokemongui;
 
 public class Zenigame extends Pokemon implements Swimmable{
     private static final int maxGroupHealth = 200;
-        
+    private static final double maxMood = 100;    
 	public Zenigame(){
 		super("Zenigame",
-                       maxGroupHealth,40,30);
+                       maxGroupHealth,40,maxMood);
 		this.attackSkill = PokemonSkill.getPokemonSkill("TailWhip");
 		this.untimatedSkill = PokemonSkill.getPokemonSkill("WaterPulse");
 	}

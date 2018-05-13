@@ -37,7 +37,10 @@ public class Battle extends JFrame{
                 pokemons.get(member).getName()+"\nHealth: "+pokemons.get(member).getHealth()
                 +"/"+pokemons.get(member).maxHealth;
         String weight = " Weight: "+ pokemons.get(member).getWeight();
-        return hp+weight;
+        String status = "\nStatus :"+pokemons.get(member).getName()+"is "+pokemons.get(member).getStatus(); 
+        
+        return hp+weight+status;
+
     }
     
     

@@ -1,22 +1,33 @@
 package pokemongui;
 
 abstract class Pokemon{
-	public final double maxHealth;
+	public final double maxHealth,maxMood;
 	protected double health,weight,mood;
 	protected String name;
 	protected PokemonSkill attackSkill;
 	protected PokemonSkill untimatedSkill;
 
-	public Pokemon(String name, double maxHealth,double weight,double mood){
-		this.name = name;
-		this.health = maxHealth;
+	public Pokemon(String name, double maxHealth,double weight,double maxMood){
+		this.name      = name;
+		this.health    = maxHealth;
 		this.maxHealth = maxHealth;
-                this.weight = weight;
-                this.mood = mood;
+                this.weight    = weight;
+                this.mood      = maxMood-10;
+                this.maxMood   = maxMood;
 	}
         public double getMood(){
             return this.mood;
         }
+        public String getStatus(){
+            if (this.mood > 80)
+                 return "happy";
+            else if (this.mood <30)
+                 return "bad";
+            else 
+                 return  "impassible";
+            
+        }
+        
         public double getWeight(){
             return this.weight;
         }
@@ -34,6 +45,9 @@ abstract class Pokemon{
                 this.mood += berry.getRestoreValue();
 		if(this.health > this.maxHealth)
 			this.health = this.maxHealth;
+                if(this.mood > this.maxMood)
+			this.mood = this.maxMood;
+                
 	}
 
 	public void attack(Pokemon rival){
@@ -50,8 +64,13 @@ abstract class Pokemon{
 
 	public void reducedHealth(double value){
 		this.health -= value;
+                this.mood -= value-5;   
 		if(this.health < 0)
 			this.health = 0;
+                if(this.mood < 0)
+			this.mood = 0;
+
+                
 	}
         
         public void reducedWeight(double value){
@@ -59,6 +78,8 @@ abstract class Pokemon{
 		if(this.weight <= 20)
 			this.weight = 20;
 	}
+        
+        
         abstract public void move();
 
 }

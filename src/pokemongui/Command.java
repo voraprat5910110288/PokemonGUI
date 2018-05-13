@@ -39,10 +39,11 @@ public class Command extends JFrame{
         String hp = "========== Pokemon List ========== \n"+"Name: "+
                 pokemons.get(member).getName()+"\nHealth: "+pokemons.get(member).getHealth()
                 +"/"+pokemons.get(member).maxHealth;
-        String weight = " Weight: "+ pokemons.get(member).getWeight()+"\nMood: "+pokemons.get(member).getMood();
-        return hp+weight;
+        String weight = " Weight: "+ pokemons.get(member).getWeight();
+        String mood ="\nMood: "+ pokemons.get(member).getMood()+"/"+pokemons.get(member).maxMood;
+        String status = "\nStatus :"+pokemons.get(member).getName()+" is "+pokemons.get(member).getStatus();        
+        return hp+weight+mood+status;
     }
-    
     
     
     public void eatBerry(int mumber){

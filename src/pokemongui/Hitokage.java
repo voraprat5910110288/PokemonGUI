@@ -3,9 +3,10 @@ package pokemongui;
 
 public class Hitokage extends Pokemon implements Runnable {
     private static final int maxGroupHealth = 200;
+    private static final double maxMood = 100;
 	public Hitokage(){
 		super("Hitokage",
-		       maxGroupHealth,40,20);
+		       maxGroupHealth,40,maxMood);
 
 		this.attackSkill = PokemonSkill.getPokemonSkill("Crash");
 		this.untimatedSkill = PokemonSkill.getPokemonSkill("Fired");
