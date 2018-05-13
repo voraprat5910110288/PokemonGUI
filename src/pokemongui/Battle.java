@@ -15,7 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import sun.audio.*;
+import java.io.*;
 
 public class Battle extends JFrame{
     JComboBox selectSkill;
@@ -39,6 +43,7 @@ public class Battle extends JFrame{
     
     public Battle(ArrayList<Pokemon> pokemons,int member){
         super("Battle_Royale");
+        songs();
         
         this.memberR = member;
         
@@ -61,6 +66,8 @@ public class Battle extends JFrame{
         };
         select = new JComboBox(berryName);
         select.setPreferredSize(new Dimension(120,20));
+        
+        
         
         
         switch (member) {
@@ -164,6 +171,18 @@ public class Battle extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
     }
+     private void songs() {
+       InputStream inputS ;
+       try{
+            inputS = new FileInputStream(new File("D:\\music.wav"));
+            AudioStream audio = new AudioStream(inputS);
+            AudioPlayer.player.start(audio);
+            
+        }
+       catch(Exception e){
+           
+       }
+   }
     
             
       

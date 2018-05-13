@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -16,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 
 
@@ -55,7 +60,7 @@ public class Command extends JFrame{
             "Fushigidane", // 005
             "Zenigame"     // 006
         };
-        
+        songs();
         select = new JComboBox(pokemonName);
         select.setPreferredSize(new Dimension(100,20));
         
@@ -204,9 +209,20 @@ public class Command extends JFrame{
         c.add(showData, BorderLayout.PAGE_START);
         c.add(p1, BorderLayout.CENTER);
 
-        
-        
         //**********************
     }
+    
+    private void songs() {
+       InputStream inputS ;
+       try{
+            inputS = new FileInputStream(new File("D:\\starwars.wav"));
+            AudioStream audio = new AudioStream(inputS);
+            AudioPlayer.player.start(audio);
+                   
+        }
+       catch(Exception e){
+           
+       }
+   }
    
 }
