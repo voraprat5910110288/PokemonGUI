@@ -13,6 +13,8 @@ public class Fushigidane extends Pokemon implements Runnable {
 
 	public void move(){
 		this.run();
+                moodStepUp();
+
                	}
 
 	public void run(){ 

@@ -13,6 +13,8 @@ public class Zenigame extends Pokemon implements Swimmable{
        @Override
 	public void move(){
 		this.swim();
+                moodStepUp();
+                moodStepUp();
 	}
 
         @Override

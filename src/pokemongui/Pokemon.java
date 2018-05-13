@@ -43,17 +43,24 @@ abstract class Pokemon{
 	public void eat(Berry berry){
 		this.health += berry.getRestoreValue();
                 this.mood += berry.getRestoreValue();
-		if(this.health > this.maxHealth)
-			this.health = this.maxHealth;
-                if(this.mood > this.maxMood)
-			this.mood = this.maxMood;
+		if (this.health > this.maxHealth || this.mood > this.maxMood){
+                    this.health = this.maxHealth;
+	            this.mood = this.maxMood;
+                }
+			
                 
 	}
 
 	public void attack(Pokemon rival){
 		rival.injure(this.attackSkill);
 	}
+        
+        public void moodStepUp(){
+            this.mood +=1;
+            if (this.mood > this.maxMood)
+                this.mood = this.maxMood;
 
+        }
 	public void untimate(Pokemon rival){
 		rival.injure(this.untimatedSkill);
 	}
@@ -69,8 +76,7 @@ abstract class Pokemon{
 			this.health = 0;
                 if(this.mood < 0)
 			this.mood = 0;
-
-                
+ 
 	}
         
         public void reducedWeight(double value){

@@ -42,9 +42,7 @@ public class Battle extends JFrame{
         return hp+weight+status;
 
     }
-    
-    
-    public Battle(ArrayList<Pokemon> pokemons,int member){
+        public Battle(ArrayList<Pokemon> pokemons,int member){
         super("Battle_Royale");
         songs();
         
@@ -70,9 +68,6 @@ public class Battle extends JFrame{
         select = new JComboBox(berryName);
         select.setPreferredSize(new Dimension(120,20));
         
-        
-        
-        
         switch (member) {
             case 0:
                 red = new ImageIcon(getClass().getResource("004.png"));
@@ -88,6 +83,7 @@ public class Battle extends JFrame{
         }
         
         blue = new ImageIcon(getClass().getResource("008.png"));
+    
         labelR = new JLabel();
         labelR.setIcon(red);
         labelB = new JLabel();
@@ -186,7 +182,6 @@ public class Battle extends JFrame{
            
        }
    }
-    
-            
+  
       
 }
